@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="./images/pokeball.png" />
+    <script defer type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <div id="menuBox">
+      <div id="rules" class="menuBox-content">
+        <h1>Règlements et consignes</h1>
+        <ol>
+          <li>Sélectionnez un niveau de difficulté</li>
+          <li>Cliquez sur «OK»</li>
+          <li>
+            Entrez un chiffre entre 1 et 100 dans le champs de texte (À noter
+            que le chiffre à trouver est entier)
+          </li>
+          <li>Cliquez sur «OK»</li>
+          <li>
+            Chaque essai enlève une vie (Les vies sont les Pokéballs situés dans
+            la barre en bas à gauche du navigateur)
+          </li>
+          <li>
+            Pour voir si vous avez deviné le bon chiffre, regardez si la
+            Pokéball lancée attrape le Pokémon ou pas
+          </li>
+          <li>
+            Réessayer jusqu'à ce que vous obteniez le bon chiffre ou videz votre
+            barre de vie
+          </li>
+          <li>AMUSEZ-VOUS!</li>
+        </ol>
+      </div>
+      <div id="levels" class="menuBox-content">
+        <h1>Niveau de difficulté</h1>
+        <h3>Veuillez sélectionner un niveau de difficulté</h3>
+        <div id="easy" class="level" onclick="selectLevel(levels.EASY)">
+          <span>Facile</span
+          ><svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="check"
+            id="easy-checkmark"
+            class="checkmark"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            ></path>
+          </svg>
+        </div>
+        <div id="normal" class="level" onclick="selectLevel(levels.NORMAL)">
+          <span>Normal</span
+          ><svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="check"
+            id="normal-checkmark"
+            class="checkmark"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            ></path>
+          </svg>
+        </div>
+        <div id="hard" class="level" onclick="selectLevel(levels.HARD)">
+          <span>Difficile</span
+          ><svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="check"
+            id="hard-checkmark"
+            class="checkmark"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <button type="button" id="menuBoxButton" onclick="menuBoxBtnClicked()">
+        OK
+      </button>
+    </div>
+    <div id="game">
+      <div
+        id="restart-game"
+        onmouseover="document.getElementById('restart-text').style.display = 'block'"
+        onmouseout="document.getElementById('restart-text').style.display = null"
+        onclick="restartGame()"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="sync-alt"
+          class="svg-inline--fa fa-sync-alt fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
+          ></path>
+        </svg>
+        <h2 id="restart-text">Recommencer</h2>
+      </div>
+      <div id="form">
+        <h1>Devine le chiffre entre 1 et 100!</h1>
+        <h2 id="message"></h2>
+        <input type="number" id="number" min="1" max="100" />
+        <button type="button" id="number-submit-button" onclick="submit()">
+          OK
+        </button>
+      </div>
+      <div id="livebar"></div>
+      <div id="pokeball"></div>
+      <div id="pokemon"></div>
+    </div>
+    <div id="end">
+      <h1>Status</h1>
+      <button type="button" onclick="restartGame()" id="end-restart-btn">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="sync-alt"
+          class="svg-inline--fa fa-sync-alt fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
+          ></path>
+        </svg>
+        Recommencer
+      </button>
+    </div>
+  </body>
+</html>

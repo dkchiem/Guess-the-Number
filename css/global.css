@@ -1,0 +1,380 @@
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes wiggle {
+  0% {
+    -webkit-transform: translateX(0px) rotate(0deg);
+            transform: translateX(0px) rotate(0deg);
+  }
+  30% {
+    -webkit-transform: translateX(20px) rotate(20deg);
+            transform: translateX(20px) rotate(20deg);
+  }
+  40% {
+    -webkit-transform: translateX(-20px) rotate(-20deg);
+            transform: translateX(-20px) rotate(-20deg);
+  }
+  60% {
+    -webkit-transform: translateX(0px) rotate(0deg);
+            transform: translateX(0px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translateX(0px) rotate(0deg);
+            transform: translateX(0px) rotate(0deg);
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    -webkit-transform: translateX(0px) rotate(0deg);
+            transform: translateX(0px) rotate(0deg);
+  }
+  30% {
+    -webkit-transform: translateX(20px) rotate(20deg);
+            transform: translateX(20px) rotate(20deg);
+  }
+  40% {
+    -webkit-transform: translateX(-20px) rotate(-20deg);
+            transform: translateX(-20px) rotate(-20deg);
+  }
+  60% {
+    -webkit-transform: translateX(0px) rotate(0deg);
+            transform: translateX(0px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translateX(0px) rotate(0deg);
+            transform: translateX(0px) rotate(0deg);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0366d6;
+  color: white;
+  outline: none;
+  border-radius: 10px;
+  height: 40px;
+  min-width: 100px;
+  font-size: 1.1rem;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px;
+}
+
+button * {
+  margin: 5px;
+}
+
+button svg {
+  height: 80%;
+}
+
+button:hover svg {
+  -webkit-animation: spin 1.5s infinite linear;
+          animation: spin 1.5s infinite linear;
+}
+
+button:enabled {
+  cursor: pointer;
+}
+
+button:hover:enabled {
+  background-color: #044289;
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
+}
+
+button:disabled {
+  background-color: #79b8ff;
+}
+
+body {
+  background-image: url(../images/background.jpg);
+  background-size: cover;
+  height: 100vh;
+  background-position: bottom;
+  font-family: 'Montserrat', sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+body h1 {
+  font-size: 3rem;
+}
+
+body #menuBox {
+  width: 50%;
+  min-width: 300px;
+  padding: 50px 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid #d1d5da;
+}
+
+body #menuBox .menuBox-content {
+  width: 80%;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #menuBox .menuBox-content#rules ol {
+  margin: 50px 0;
+  font-size: 1.2rem;
+}
+
+body #menuBox .menuBox-content#rules ol li {
+  margin: 10px 0;
+}
+
+body #menuBox .menuBox-content#levels .level {
+  padding: 20px;
+  margin: 10px;
+  width: 30%;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+  position: relative;
+}
+
+body #menuBox .menuBox-content#levels .level:hover {
+  -webkit-transform: scale(105%);
+          transform: scale(105%);
+}
+
+body #menuBox .menuBox-content#levels .level#easy {
+  background-color: #28a745;
+}
+
+body #menuBox .menuBox-content#levels .level#normal {
+  background-color: #ffd33d;
+}
+
+body #menuBox .menuBox-content#levels .level#hard {
+  background-color: #d73a49;
+}
+
+body #menuBox .menuBox-content#levels .level .checkmark {
+  display: none;
+  height: 25px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+body #menuBox .menuBox-content#levels .level:nth-child(3) {
+  margin-top: 30px;
+}
+
+body #menuBox .menuBox-content#levels .level:last-child {
+  margin-bottom: 30px;
+}
+
+body #game {
+  display: none;
+}
+
+body #game #restart-game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: back;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  background-color: white;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+body #game #restart-game:hover svg {
+  -webkit-animation: spin 1.5s infinite linear;
+          animation: spin 1.5s infinite linear;
+}
+
+body #game #restart-game #restart-text {
+  display: none;
+  margin-left: 15px;
+}
+
+body #game #restart-game svg {
+  height: 50px;
+}
+
+body #game #form {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #game #form input {
+  outline: none;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #d1d5da;
+  border-radius: 10px;
+  height: 40px;
+  font-size: 2rem;
+  width: 30%;
+  min-width: 200px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body #game #livebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+body #game #livebar .live {
+  background-image: url(../images/pokeball.png);
+  background-size: cover;
+  background-position: center;
+  height: 80px;
+  width: 80px;
+  margin: 10px;
+}
+
+body #game #pokeball {
+  position: absolute;
+  bottom: 175px;
+  left: -80px;
+  background-image: url(../images/pokeball.png);
+  background-size: cover;
+  background-position: center;
+  height: 80px;
+  width: 80px;
+  -webkit-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+  z-index: 1000;
+  -webkit-transition: bottom 0.3s;
+  transition: bottom 0.3s;
+}
+
+body #game #pokemon {
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  right: 200px;
+  bottom: 125px;
+}
+
+body #end {
+  position: fixed;
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  opacity: 0.8;
+  z-index: 2000;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=global.css.map */
