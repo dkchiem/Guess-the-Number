@@ -40,12 +40,28 @@ const pokemonsList = [
     200,
     200,
   ),
+  new Pokemon(levels.NORMAL, 'evee', './images/pokemons/evee.webp', 200, 200),
   new Pokemon(
     levels.NORMAL,
     'pikachu',
     './images/pokemons/pikachu.gif',
     200,
     200,
+  ),
+  new Pokemon(levels.NORMAL, 'gasly', './images/pokemons/gasly.gif', 400, 400),
+  new Pokemon(
+    levels.HARD,
+    'charizard',
+    './images/pokemons/charizard.gif',
+    400,
+    400,
+  ),
+  new Pokemon(
+    levels.HARD,
+    'lucario',
+    './images/pokemons/lucario.gif',
+    300,
+    300,
   ),
   new Pokemon(
     levels.HARD,
@@ -55,11 +71,14 @@ const pokemonsList = [
     300,
   ),
 ];
-
+let initialLives = 0;
 let lives = 0;
 let currentPokemonImage;
 let currentPokemon;
 let currentLevel;
+
+// Elements
+const numberSubmitButton = document.getElementById('number-submit-button');
 
 // ********************************
 // ********* User actions *********
@@ -93,28 +112,32 @@ function menuBoxBtnClicked() {
 // When number is submitted by user
 async function submit() {
   const number = document.getElementById('number').value;
+  numberSubmitButton.disabled = true;
   if (number == '' || number < 1 || number > 100) {
     putMessage('Entrez un nombre entre 1 et 100!');
   } else {
     lives -= 1;
     if (number == validNumber) {
       await launchBall(currentPokemonImage, true);
+      numberSubmitButton.disabled = false;
       putMessage('Bravo!');
       win(true);
     } else if (number > validNumber) {
       await launchBall(currentPokemonImage, false);
+      numberSubmitButton.disabled = false;
       if (lives > 0) {
         putMessage('Plus bas! Réessayez!');
       } else {
-        putMessage('GAME OVER');
+        putMessage('Vous avez perdu!');
         win(false);
       }
     } else if (number < validNumber) {
       await launchBall(currentPokemonImage, false);
+      numberSubmitButton.disabled = false;
       if (lives > 0) {
         putMessage('Plus haut! Réessayez!');
       } else {
-        putMessage('GAME OVER');
+        putMessage('Vous avez perdu!');
         win(false);
       }
     }
@@ -145,6 +168,7 @@ function selectLevel(selectedLevel) {
     default:
       break;
   }
+  initialLives = lives;
   menuBoxButton.disabled = false;
 }
 
@@ -265,14 +289,78 @@ function reloadLives() {
 }
 
 // Win
-function win(hasWon) {
+async function win(hasWon) {
   const endScreen = document.getElementById('end');
-  const numberSubmitButton = document.getElementById('number-submit-button');
+  const endStatus = document.getElementById('end-status');
+  const correctNumber = document.getElementById('correctNumber');
+  const usedLives = document.getElementById('usedLives');
+  const levelName = document.getElementById('levelName');
+  const bestscore1 = document.getElementById('bestscore1');
+  const bestscore2 = document.getElementById('bestscore2');
+  const bestscore3 = document.getElementById('bestscore3');
   numberSubmitButton.disabled = true;
   endScreen.style.display = 'flex';
+  correctNumber.textContent = validNumber;
+  usedLives.textContent = initialLives - lives;
+
+  switch (currentLevel) {
+    case levels.EASY:
+      levelName.textContent = 'facile';
+      break;
+    case levels.NORMAL:
+      levelName.textContent = 'normal';
+      break;
+    case levels.HARD:
+      levelName.textContent = 'difficile';
+      break;
+    default:
+      break;
+  }
+  let bestscores;
+
+  // bestscores = [10, 3, 7];
+  // localStorage[currentLevel] = JSON.stringify(bestscores);
+
+  // Read local data
+  const storedBestScores = localStorage[currentLevel];
+  if (storedBestScores) bestscores = JSON.parse(storedBestScores);
+  bestscores.sort();
+  if (initialLives - lives < bestscores[2]) {
+    bestscores[2] = initialLives - lives;
+    bestscores.sort();
+    localStorage[currentLevel] = JSON.stringify(bestscores);
+    console.log(localStorage[currentLevel]);
+  }
+  // const newBestScoreIndex = await isNewBestScore;
+  // console.log(newBestScoreIndex);
+  // if (
+  //   newBestScoreIndex === 0 ||
+  //   newBestScoreIndex === 1 ||
+  //   newBestScoreIndex === 2
+  // ) {
+  //   // Write local data
+  //   bestscores[newBestScoreIndex] = initialLives - lives;
+  //   localStorage[currentLevel] = JSON.stringify(bestscores);
+  //   console.log(localStorage[currentLevel]);
+  //   bestscores.sort();
+  //   console.log('New best score');
+  // }
+
+  // if (await newBestScoreIndex) {
+  //   // Write local data
+  //   bestscores[newBestScoreIndex] = usedLives;
+  //   localStorage[currentLevel] = JSON.stringify(bestscores);
+  //   console.log(localStorage[currentLevel]);
+  //   console.log('New best score');
+  // }
+
+  bestscore1.textContent = bestscores[0] ?? '-';
+  bestscore2.textContent = bestscores[1] ?? '-';
+  bestscore3.textContent = bestscores[2] ?? '-';
+
   if (hasWon) {
-    console.log('Won');
+    endStatus.textContent = '🏆 Victoire! 🏆';
   } else {
-    console.log('Has not won');
+    endStatus.textContent = '☹️ Défaite! ☹️';
   }
 }

@@ -66,6 +66,14 @@ button {
   }
 }
 
+hr {
+  min-width: 300px;
+  border: none;
+  background-color: black;
+  height: 2px;
+  margin: 10px 0;
+}
+
 body {
   background-image: url(../images/background.jpg);
   background-size: cover;
@@ -236,10 +244,35 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: 2000;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    #content {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0;
+      align-items: center;
+      justify-content: center;
+      h2 {
+        margin: 10px 0;
+      }
+      #end-best-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        table {
+          tr {
+            margin: 10px 0;
+            td,
+            th {
+              padding: 5px;
+            }
+          }
+        }
+      }
+    }
   }
 }

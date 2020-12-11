@@ -122,6 +122,14 @@ button:disabled {
   background-color: #79b8ff;
 }
 
+hr {
+  min-width: 300px;
+  border: none;
+  background-color: black;
+  height: 2px;
+  margin: 10px 0;
+}
+
 body {
   background-image: url(../images/background.jpg);
   background-size: cover;
@@ -364,7 +372,7 @@ body #end {
   height: 100vh;
   width: 100vw;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: 2000;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -376,5 +384,51 @@ body #end {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+body #end #content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 20px 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #end #content h2 {
+  margin: 10px 0;
+}
+
+body #end #content #end-best-score {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #end #content #end-best-score table tr {
+  margin: 10px 0;
+}
+
+body #end #content #end-best-score table tr td,
+body #end #content #end-best-score table tr th {
+  padding: 5px;
 }
 /*# sourceMappingURL=global.css.map */

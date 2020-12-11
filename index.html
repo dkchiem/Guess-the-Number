@@ -143,7 +143,33 @@
       <div id="pokemon"></div>
     </div>
     <div id="end">
-      <h1>Status</h1>
+      <h1 id="end-status">Status</h1>
+      <div id="content">
+        <h2>Bon chiffre: <span id="correctNumber">12</span></h2>
+        <h2>Coups utilisés: <span id="usedLives">12</span></h2>
+        <hr />
+        <div id="end-best-score">
+          <h2>3 meilleurs scores (Niveau <span id="levelName"></span>)</h2>
+          <table>
+            <tr>
+              <th>Rang</th>
+              <th>Nombre d'essai(s)</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td id="bestscore1">0</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td id="bestscore2">0</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td id="bestscore3">0</td>
+            </tr>
+          </table>
+        </div>
+      </div>
       <button type="button" onclick="restartGame()" id="end-restart-btn">
         <svg
           aria-hidden="true"
