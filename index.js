@@ -316,43 +316,17 @@ async function win(hasWon) {
     default:
       break;
   }
-  let bestscores;
+  let bestscores = [];
 
-  // bestscores = [10, 3, 7];
-  // localStorage[currentLevel] = JSON.stringify(bestscores);
-
-  // Read local data
   const storedBestScores = localStorage[currentLevel];
   if (storedBestScores) bestscores = JSON.parse(storedBestScores);
   bestscores.sort();
-  if (initialLives - lives < bestscores[2]) {
+  if (initialLives - lives < bestscores[2] || bestscores[2] === undefined) {
     bestscores[2] = initialLives - lives;
     bestscores.sort();
     localStorage[currentLevel] = JSON.stringify(bestscores);
     console.log(localStorage[currentLevel]);
   }
-  // const newBestScoreIndex = await isNewBestScore;
-  // console.log(newBestScoreIndex);
-  // if (
-  //   newBestScoreIndex === 0 ||
-  //   newBestScoreIndex === 1 ||
-  //   newBestScoreIndex === 2
-  // ) {
-  //   // Write local data
-  //   bestscores[newBestScoreIndex] = initialLives - lives;
-  //   localStorage[currentLevel] = JSON.stringify(bestscores);
-  //   console.log(localStorage[currentLevel]);
-  //   bestscores.sort();
-  //   console.log('New best score');
-  // }
-
-  // if (await newBestScoreIndex) {
-  //   // Write local data
-  //   bestscores[newBestScoreIndex] = usedLives;
-  //   localStorage[currentLevel] = JSON.stringify(bestscores);
-  //   console.log(localStorage[currentLevel]);
-  //   console.log('New best score');
-  // }
 
   bestscore1.textContent = bestscores[0] ?? '-';
   bestscore2.textContent = bestscores[1] ?? '-';
